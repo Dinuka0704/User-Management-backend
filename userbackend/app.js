@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const controller = require("./controller")
+const controller = require("./controller");
 
 // middleware
 app.use(cors());
@@ -17,22 +17,16 @@ app.get("/users",(req,res)=>{
     })
 })
 
-app.post("/adduser",(req,res)=>{
-    controller.addUser(req.body,(callback) =>{
-        res.send();
-    })
+app.post("/adduser",(req,res, next)=>{
+    controller.addUser(req,res,next);
 });
 
-app.post("/updateUser",(req,res)=>{
-    controller.updateUser(req.body,(callback) =>{
-        res.send(callback);
-    })
+app.post("/updateUser",(req,res, next)=>{
+    controller.updateUser(req,res,next);
 });
 
-app.delete("/deleteUser",(req,res)=>{
-    controller.deleteUser(req.body,(callback) =>{
-        res.send(callback);
-    })
+app.delete("/deleteUser",(req,res, next)=>{
+    controller.deleteUser(req,res,next);
 });
 
 module.exports=app;
